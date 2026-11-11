@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giraso Studio</title>
+<meta name="description" content="Open, edit and export SVG files in the browser.">
+<meta name="theme-color" content="#07150d">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script type="module" src="/js/main.js"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-select" viewBox="0 0 24 24"><path d="M5 3.5 L18.5 12 L12.2 13.4 L9.4 19.5 Z"/></symbol>
+  <symbol id="i-rect" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="13" rx="2"/></symbol>
+  <symbol id="i-ellipse" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/></symbol>
+  <symbol id="i-line" viewBox="0 0 24 24"><path d="M5 19 L19 5"/></symbol>
+  <symbol id="i-tri" viewBox="0 0 24 24"><path d="M12 4.5 L20 19 H4 Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.8 l2.5 5.3 5.7.7-4.2 3.9 1.1 5.7L12 16.6l-5.1 2.8 1.1-5.7-4.2-3.9 5.7-.7Z"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6.5 V5 H19 V6.5 M12 5 V19 M9 19 H15"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12.5 V6.5 a1.5 1.5 0 0 1 3 0 V11 V5 a1.5 1.5 0 0 1 3 0 V11 V6.5 a1.5 1.5 0 0 1 3 0 V14 c0 3.5-2.4 6-6 6 c-2.6 0-4-1.2-5.4-3.3 L4.4 13.4 a1.4 1.4 0 0 1 2.2-1.7 Z"/></symbol>
+  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7 L4.5 11.5 L9 16 M5 11.5 H14.5 a5 5 0 0 1 0 10 H12"/></symbol>
+  <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 7 L19.5 11.5 L15 16 M19 11.5 H9.5 a5 5 0 0 0 0 10 H12"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M6 12 H18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 6 V18 M6 12 H18"/></symbol>
+  <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9 V4 H9 M15 4 H20 V9 M20 15 V20 H15 M9 20 H4 V15"/></symbol>
+  <symbol id="i-open" viewBox="0 0 24 24"><path d="M3.5 7 V18.5 H18.5 L21 10 H7 L4.8 17.5 M3.5 7 V5 H9 L11 7 H17 V10"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3.5 H14 L18.5 8 V20.5 H6 Z M14 3.5 V8 H18.5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="1.5"/><path d="M15.5 8.5 V5.5 a1 1 0 0 0-1-1 H5.5 a1 1 0 0 0-1 1 V14.5 a1 1 0 0 0 1 1 H8.5"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4 V15 M7.5 10.5 L12 15 L16.5 10.5 M5 19.5 H19"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12 C5 7.5 8.3 5.5 12 5.5 S19 7.5 21.5 12 C19 16.5 15.7 18.5 12 18.5 S5 16.5 2.5 12 Z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M4 4 L20 20 M9.9 5.8 A9 9 0 0 1 12 5.5 c3.7 0 7 2 9.5 6.5 a15 15 0 0 1-2.6 3.4 M6.5 7.6 C5 8.7 3.7 10.2 2.5 12 c2.5 4.5 5.8 6.5 9.5 6.5 c1.6 0 3.1-.4 4.4-1.1"/></symbol>
+  <symbol id="i-dup" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16 V5 a1 1 0 0 1 1-1 H16"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19 V5 M6.5 10.5 L12 5 L17.5 10.5"/></symbol>
+  <symbol id="i-dn" viewBox="0 0 24 24"><path d="M12 5 V19 M6.5 13.5 L12 19 L17.5 13.5"/></symbol>
+  <symbol id="i-ch" viewBox="0 0 24 24"><path d="M12 3.5 V20.5"/><rect x="6" y="7" width="12" height="4" rx="1"/><rect x="8" y="13" width="8" height="4" rx="1"/></symbol>
+  <symbol id="i-cv" viewBox="0 0 24 24"><path d="M3.5 12 H20.5"/><rect x="7" y="6" width="4" height="12" rx="1"/><rect x="13" y="8" width="4" height="8" rx="1"/></symbol>
+  <symbol id="i-group" viewBox="0 0 24 24"><path d="M4 7 V4 H7 M17 4 H20 V7 M20 17 V20 H17 M7 20 H4 V17"/><rect x="8" y="8" width="8" height="8" rx="1"/></symbol>
+  <symbol id="i-parent" viewBox="0 0 24 24"><path d="M9 14 L4.5 9.5 L9 5 M5 9.5 H14 a5 5 0 0 1 5 5 V19"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7 H19.5 M9.5 7 V4.5 H14.5 V7 M6.5 7 L7.5 20 H16.5 L17.5 7"/></symbol>
+  <symbol id="i-none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M6.7 17.3 L17.3 6.7"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 9 H17 L13.5 5.5 M19 15 H7 L10.5 18.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"/></symbol>
+  <symbol id="i-g" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke-dasharray="3 2.4"/></symbol>
+  <symbol id="i-path" viewBox="0 0 24 24"><path d="M4 18 C8 4 14 20 20 6"/></symbol>
+  <symbol id="i-defs" viewBox="0 0 24 24"><path d="M8 5 C5.5 5 6 9 4.5 12 C6 15 5.5 19 8 19 M16 5 C18.5 5 18 9 19.5 12 C18 15 18.5 19 16 19"/></symbol>
+  <symbol id="i-img" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M3.5 16 L9 11 L14 15.5 L16.5 13.5 L20.5 17"/></symbol>
+</svg>
+
+<div class="app">
+<header class="top">
+  <div class="logo"><div class="logo-mark" aria-hidden="true">g</div><b>giraso</b><span>studio</span></div>
+  <input class="fname" id="fname" value="aps-badge.svg" aria-label="File name" spellcheck="false">
+  <button class="tb" id="bNew" title="New blank file"><svg class="i"><use href="#i-file"/></svg>New</button>
+  <button class="tb" id="bOpen" title="Open an .svg file"><svg class="i"><use href="#i-open"/></svg>Open</button>
+  <input type="file" id="file" accept=".svg,image/svg+xml" class="vh" aria-label="Open SVG file">
+  <div class="spacer"></div>
+  <button class="tb" id="bUndo" title="Undo · Ctrl Z" aria-label="Undo"><svg class="i"><use href="#i-undo"/></svg></button>
+  <button class="tb" id="bRedo" title="Redo · Ctrl Shift Z" aria-label="Redo"><svg class="i"><use href="#i-redo"/></svg></button>
+  <div class="vr"></div>
+  <button class="tb" id="bZoomOut" title="Zoom out" aria-label="Zoom out"><svg class="i"><use href="#i-minus"/></svg></button>
+  <span class="zoom" id="zoomLbl">100%</span>
+  <button class="tb" id="bZoomIn" title="Zoom in" aria-label="Zoom in"><svg class="i"><use href="#i-plus"/></svg></button>
+  <button class="tb" id="bFit" title="Fit · F" aria-label="Fit to screen"><svg class="i"><use href="#i-fit"/></svg></button>
+  <div class="vr"></div>
+  <button class="tb outline" id="bDl" title="Download .svg"><svg class="i"><use href="#i-down"/></svg>SVG</button>
+  <button class="tb outline" id="bPng" title="Download PNG at 4×"><svg class="i"><use href="#i-down"/></svg>PNG</button>
+  <button class="tb go" id="bCopy" title="Copy the SVG code"><svg class="i"><use href="#i-copy"/></svg>Copy code</button>
+</header>
+
+<main>
+  <nav class="rail" aria-label="Tools">
+    <button class="tool" data-tool="select" title="Select · V" aria-label="Select" aria-pressed="true"><svg class="i"><use href="#i-select"/></svg></button>
+    <button class="tool" data-tool="hand" title="Pan · H (or hold Space)" aria-label="Pan" aria-pressed="false"><svg class="i"><use href="#i-hand"/></svg></button>
+    <hr>
+    <button class="tool" data-tool="rect" title="Rectangle · R" aria-label="Rectangle" aria-pressed="false"><svg class="i"><use href="#i-rect"/></svg></button>
+    <button class="tool" data-tool="ellipse" title="Ellipse · O" aria-label="Ellipse" aria-pressed="false"><svg class="i"><use href="#i-ellipse"/></svg></button>
+    <button class="tool" data-tool="line" title="Line · L" aria-label="Line" aria-pressed="false"><svg class="i"><use href="#i-line"/></svg></button>
+    <button class="tool" data-tool="triangle" title="Triangle · Y" aria-label="Triangle" aria-pressed="false"><svg class="i"><use href="#i-tri"/></svg></button>
+    <button class="tool" data-tool="star" title="Star · S" aria-label="Star" aria-pressed="false"><svg class="i"><use href="#i-star"/></svg></button>
+    <button class="tool" data-tool="text" title="Text · T" aria-label="Text" aria-pressed="false"><svg class="i"><use href="#i-text"/></svg></button>
+  </nav>
+
+  <aside class="side left">
+    <div class="head">Layers <small>top = front</small></div>
+    <div class="layers" id="layers"></div>
+    <div class="colors">
+      <div class="head">Colors in this file</div>
+      <p>Click to fill the selection, Shift-click for stroke. The small swap button recolors it everywhere.</p>
+      <div class="swatches" id="swatches"></div>
+    </div>
+  </aside>
+
+  <section class="stage" id="stage" data-tool="select" aria-label="Canvas">
+    <div class="viewport" id="viewport"><div class="art checker" id="art"></div></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="drop">Drop the .svg file to open it</div>
+  </section>
+
+  <aside class="side right">
+    <div class="tabs" role="tablist">
+      <button class="tab" data-tab="props" role="tab" aria-selected="true">Design</button>
+      <button class="tab" data-tab="code" role="tab" aria-selected="false">Code</button>
+      <button class="tab" data-tab="help" role="tab" aria-selected="false">Keys</button>
+    </div>
+    <div class="pbody" id="pProps"></div>
+    <div class="pbody" id="pCode" hidden>
+      <div class="codewrap">
+        <textarea id="code" spellcheck="false" aria-label="SVG code"></textarea>
+        <div class="codeacts">
+          <button class="tb go" id="bApply">Apply</button>
+          <button class="tb outline" id="bCopy2"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="pbody" id="pHelp" hidden>
+      <div class="head">Tools</div>
+      <div class="keys">
+        <kbd>V</kbd><span>Select</span><kbd>H</kbd><span>Pan (or hold Space)</span>
+        <kbd>R</kbd><span>Rectangle — drag to draw</span><kbd>O</kbd><span>Ellipse</span>
+        <kbd>L</kbd><span>Line</span><kbd>Y</kbd><span>Triangle</span><kbd>S</kbd><span>Star</span><kbd>T</kbd><span>Text — click to place</span>
+        <kbd>Shift</kbd><span>while drawing: square / circle</span>
+      </div>
+      <div class="head">Editing</div>
+      <div class="keys">
+        <kbd>Click</kbd><span>pick the smallest part under the cursor</span>
+        <kbd>Alt Click</kbd><span>pick its whole group</span>
+        <kbd>Shift Drag</kbd><span>move on whole numbers</span>
+        <kbd>← ↑ → ↓</kbd><span>nudge 1, with Shift 10</span>
+        <kbd>Drag a label</kbd><span>scrub the number left / right</span>
+        <kbd>Ctrl D</kbd><span>duplicate</span><kbd>Del</kbd><span>delete</span>
+        <kbd>Ctrl G</kbd><span>group, add Shift to ungroup</span>
+        <kbd>[ ]</kbd><span>send backward / bring forward</span>
+        <kbd>Ctrl Z</kbd><span>undo, add Shift to redo</span>
+        <kbd>F</kbd><span>fit to screen</span><kbd>Esc</kbd><span>deselect</span>
+        <kbd>Ctrl V</kbd><span>paste SVG code to open it</span>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer class="status" aria-live="polite">
+  <span>x <b id="sx">–</b> &nbsp;y <b id="sy">–</b></span>
+  <span id="ssel">nothing selected</span>
+  <span id="sdoc"></span>
+  <span class="msg" id="msg"></span>
+</footer>
+</div>
+</body>
+</html>
