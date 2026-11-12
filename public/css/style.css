@@ -39,6 +39,7 @@ svg.i{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .tb.outline{border-color:var(--line-2)}
 .tb.go{background:var(--lime);color:var(--lime-ink);font-weight:600;border-color:var(--lime)}
 .tb.go:hover{background:#d2f77f}
+.tb.go:disabled{background:var(--lime)}
 .vr{width:1px;height:20px;background:var(--line);margin:0 6px;flex:none}
 .zoom{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:46px;text-align:center}
 
@@ -98,6 +99,14 @@ main{display:grid;grid-template-columns:44px 240px 1fr 296px;min-height:0}
 .handle{position:absolute;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;background:#fff;border:1.5px solid var(--sel);pointer-events:auto;cursor:nwse-resize}
 .drop{position:absolute;inset:14px;border:1.5px dashed var(--ink);border-radius:8px;display:none;align-items:center;justify-content:center;font-size:15px;color:var(--ink);background:#f3f0e8d9;pointer-events:none}
 .stage.dragover .drop{display:flex}
+.welcome{position:absolute;inset:0;display:grid;place-items:center;padding:16px}
+.welcome[hidden],.stage.dragover .welcome{display:none}
+.welcome-card{background:var(--panel);border:1px solid var(--line-2);border-radius:12px;padding:28px 32px;max-width:400px;text-align:center;box-shadow:0 12px 40px #07150d40}
+.welcome-card .logo-mark{margin:0 auto 14px;width:40px;height:40px;font-size:22px;border-radius:9px}
+.welcome-card h1{margin:0 0 6px;font:700 20px/1.2 'Plus Jakarta Sans',Geist,sans-serif;letter-spacing:-.01em}
+.welcome-card p{margin:0 0 20px;color:var(--muted)}
+.welcome-acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.welcome-acts .tb{padding:7px 14px;min-height:36px}
 
 /* right panel */
 .tabs{display:flex;padding:0 6px;border-bottom:1px solid var(--line);gap:2px}

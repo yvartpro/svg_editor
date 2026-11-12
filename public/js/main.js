@@ -1,4 +1,5 @@
-// Entry point: wires the toolbar and panels, then opens the sample file.
+// Entry point: wires the toolbar and panels. No file is open until the user
+// creates or opens one from the welcome card.
 import { state } from './state.js';
 import { $, codeEl, say } from './dom.js';
 import { loadSVG, serialize } from './svgdoc.js';
@@ -6,12 +7,11 @@ import { undo, redo } from './history.js';
 import { fit, zoomCenter } from './view.js';
 import { setTool } from './selection.js';
 import { drawOverlay } from './overlay.js';
-import { updateStatus } from './render.js';
+import { updateStatus, refreshAll } from './render.js';
 import { initCanvas } from './canvas.js';
 import { initOpen } from './open.js';
 import { initKeyboard } from './keyboard.js';
 import { copySVG, downloadSVG, downloadPNG } from './export.js';
-import { SAMPLE } from './samples.js';
 
 // Tool rail
 document.querySelectorAll('.tool').forEach(b => b.addEventListener('click', () => setTool(b.dataset.tool)));
@@ -44,6 +44,6 @@ initCanvas();
 initOpen();
 initKeyboard();
 
-loadSVG(SAMPLE);
+refreshAll();
 // Text boxes change size once web fonts arrive.
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { drawOverlay(); updateStatus(); });

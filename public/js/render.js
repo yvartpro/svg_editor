@@ -22,6 +22,9 @@ export function updateStatus() {
 }
 
 export function refreshAll() {
+  const open = !!state.root;
+  $('#welcome').hidden = open;
+  ['#bDl', '#bPng', '#bCopy', '#bCopy2'].forEach(s => { $(s).disabled = !open; });
   buildLayers(); buildPalette(); renderProps(); drawOverlay(); updateUndoBtns(); updateStatus();
   if (state.activeTab === 'code') codeEl.value = serialize();
 }

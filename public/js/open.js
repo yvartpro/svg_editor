@@ -4,9 +4,10 @@ import { loadSVG } from './svgdoc.js';
 import { BLANK } from './samples.js';
 
 export function initOpen() {
-  $('#bNew').onclick = () => { if (loadSVG(BLANK)) $('#fname').value = 'untitled.svg'; };
-
-  $('#bOpen').onclick = () => $('#file').click();
+  const newDoc = () => { if (loadSVG(BLANK)) $('#fname').value = 'untitled.svg'; };
+  const pickFile = () => $('#file').click();
+  $('#bNew').onclick = newDoc; $('#wNew').onclick = newDoc;
+  $('#bOpen').onclick = pickFile; $('#wOpen').onclick = pickFile;
   $('#file').onchange = async e => {
     const f = e.target.files[0];
     if (f && loadSVG(await f.text())) { $('#fname').value = f.name; say('Opened ' + f.name); }

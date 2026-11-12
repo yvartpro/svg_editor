@@ -34,7 +34,7 @@ export function loadSVG(text, { commit = true, keepView = false } = {}) {
   return true;
 }
 
-export const serialize = () => new XMLSerializer().serializeToString(state.root);
+export const serialize = () => state.root ? new XMLSerializer().serializeToString(state.root) : '';
 
 // Size the white artboard from width/height/viewBox, like a browser would.
 export function sizeArt() {

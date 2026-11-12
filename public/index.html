@@ -57,7 +57,7 @@
 <div class="app">
 <header class="top">
   <div class="logo"><div class="logo-mark" aria-hidden="true">g</div><b>giraso</b><span>studio</span></div>
-  <input class="fname" id="fname" value="aps-badge.svg" aria-label="File name" spellcheck="false">
+  <input class="fname" id="fname" value="untitled.svg" aria-label="File name" spellcheck="false">
   <button class="tb" id="bNew" title="New blank file"><svg class="i"><use href="#i-file"/></svg>New</button>
   <button class="tb" id="bOpen" title="Open an .svg file"><svg class="i"><use href="#i-open"/></svg>Open</button>
   <input type="file" id="file" accept=".svg,image/svg+xml" class="vh" aria-label="Open SVG file">
@@ -101,6 +101,17 @@
   <section class="stage" id="stage" data-tool="select" aria-label="Canvas">
     <div class="viewport" id="viewport"><div class="art checker" id="art"></div></div>
     <div class="overlay" id="overlay"></div>
+    <div class="welcome" id="welcome">
+      <div class="welcome-card">
+        <div class="logo-mark" aria-hidden="true">g</div>
+        <h1>Start a drawing</h1>
+        <p>Create a blank canvas or open an SVG file.<br>You can also drop a file here or paste SVG code.</p>
+        <div class="welcome-acts">
+          <button class="tb go" id="wNew" type="button"><svg class="i"><use href="#i-file"/></svg>New blank</button>
+          <button class="tb outline" id="wOpen" type="button"><svg class="i"><use href="#i-open"/></svg>Open .svg</button>
+        </div>
+      </div>
+    </div>
     <div class="drop">Drop the .svg file to open it</div>
   </section>
 
